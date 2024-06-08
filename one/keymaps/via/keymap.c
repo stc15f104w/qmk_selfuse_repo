@@ -45,24 +45,31 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
 };
 #endif
-static painter_device_t display;
 
-void keyboard_post_init_kb(void) {
-    // Assuming qp_make_spi_device is the correct function to create the SPI device
-    display = qp_st7789_make_spi_device(172, 320, B0, B0, A6, 4, 0);
 
-    // Initialize the display
-    qp_init(display, QP_ROTATION_0); // Initialize the display with no rotation
-}
+joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
+    JOYSTICK_AXIS_IN(A4, 900, 575, 285),
+    JOYSTICK_AXIS_IN(A2, 900, 575, 285),
+};
 
-void housekeeping_task_user(void) {
-    static uint32_t last_draw = 0;
-    if (timer_elapsed32(last_draw) > 33) { // Throttle to 30fps
-        last_draw = timer_read32();
-        // Draw 8px-wide rainbow down the left side of the display
-        for (int i = 0; i < 239; ++i) {
-            qp_line(display, 0, i, 7, i, i, 255, 255);
-        }
-        qp_flush(display);
-    }
-}
+// static painter_device_t display;
+
+// void keyboard_post_init_kb(void) {
+//     // Assuming qp_make_spi_device is the correct function to create the SPI device
+//     display = qp_st7789_make_spi_device(172, 320, B0, B0, A6, 4, 0);
+
+//     // Initialize the display
+//     qp_init(display, QP_ROTATION_0); // Initialize the display with no rotation
+// }
+
+// void housekeeping_task_user(void) {
+//     static uint32_t last_draw = 0;
+//     if (timer_elapsed32(last_draw) > 33) { // Throttle to 30fps
+//         last_draw = timer_read32();
+//         // Draw 8px-wide rainbow down the left side of the display
+//         for (int i = 0; i < 239; ++i) {
+//             qp_line(display, 0, i, 7, i, i, 255, 255);
+//         }
+//         qp_flush(display);
+//     }
+// }

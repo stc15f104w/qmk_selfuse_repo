@@ -37,6 +37,15 @@
 #define RGBLIGHT_VAL_STEP 8
 #define WS2812_BYTE_ORDER WS2812_BYTE_ORDER_GRB
 
+
+
+// Min 0, max 32
+#define JOYSTICK_BUTTON_COUNT 1
+// Min 0, max 6: X, Y, Z, Rx, Ry, Rz
+#define JOYSTICK_AXIS_COUNT 2
+// Min 8, max 16
+#define JOYSTICK_AXIS_RESOLUTION 10
+
 // 定义使用的 SPI 驱动器为 SPI1
 #undef SPI_DRIVER
 #define SPI_DRIVER SPID1
